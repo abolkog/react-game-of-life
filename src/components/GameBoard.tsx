@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Cell from './Cell';
 
 type GameBoardProps = {
   board: number[][];
@@ -9,19 +10,18 @@ const StyledGrid = styled.div<{ repeat: number }>`
   grid-template-columns: ${props => `repeat(${props.repeat}, 30px)`};
 `;
 
-const StyledGridItem = styled.div<{ active: boolean }>`
-  width: 30px;
-  height: 30px;
-  border: 1px solid #000;
-  background-color: ${props => (props.active ? '#00cccc' : '#fff')};
-`;
-
 const GameBoard: React.FC<GameBoardProps> = ({ board }) => {
   return (
     <StyledGrid data-testid="grid" repeat={board.length}>
-      {board.map(col =>
-        col.map((row, r) => (
-          <StyledGridItem key={`g_${r}`} active={r % 2 === 0} />
+      {board.map((col, colIndex) =>
+        col.map((row, rowIndex) => (
+          <Cell
+            key={`cell_${colIndex}_${rowIndex}`}
+            active={rowIndex % 2 === 0}
+            onClick={() =>
+              console.log(`Clicked on Cell ${colIndex},${rowIndex}`)
+            }
+          />
         ))
       )}
     </StyledGrid>
