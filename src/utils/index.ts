@@ -33,7 +33,7 @@ export const clone = (board: number[][]): number[][] => {
  * @param row current cell row
  * @returns number of live neighbours
  */
-export const checkLiveNeighbouts = (
+export const checkLiveNeighbours = (
   board: number[][],
   col: number,
   row: number
