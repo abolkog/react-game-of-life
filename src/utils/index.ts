@@ -25,3 +25,29 @@ export const makeGameBoard = (cols: number, rows: number) => {
 export const clone = (board: number[][]): number[][] => {
   return JSON.parse(JSON.stringify(board));
 };
+
+/**
+ * Check neighbours and return live count
+ * @param board The game board
+ * @param col current cell col
+ * @param row current cell row
+ * @returns number of live neighbours
+ */
+export const checkLiveNeighbouts = (
+  board: number[][],
+  col: number,
+  row: number
+): number => {
+  let neighbors = 0;
+  for (let c = -1; c < 2; c++) {
+    for (let r = -1; r < 2; r++) {
+      const x = (col + c + NUM_COLS) % NUM_COLS;
+      const y = (row + r + NUM_ROWS) % NUM_ROWS;
+
+      neighbors += board[x][y];
+    }
+  }
+  neighbors -= board[col][row];
+
+  return neighbors;
+};
