@@ -10,6 +10,7 @@ const StyledButton = styled.button<ButtonProps>`
   padding: 0;
   font: inherit;
   outline: 0;
+  cursor: pointer;
 `;
 
 const Clickable: React.FC<ButtonProps> = ({ children, onClick }) => (

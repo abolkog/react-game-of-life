@@ -7,15 +7,15 @@ type CellProps = {
 };
 
 const StyledCell = styled.div<{ active: boolean }>`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border: 1px solid #000;
   background-color: ${props => (props.active ? '#00cccc' : '#fff')};
 `;
 
 const Cell: React.FC<CellProps> = ({ active, onClick }) => (
   <Clickable onClick={onClick}>
-    <StyledCell active={active} />
+    <StyledCell data-testid="cell" active={active} />
   </Clickable>
 );
 

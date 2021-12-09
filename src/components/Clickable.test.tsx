@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import Clickable from './Clickable';
 
-describe('<Clickable />  Tests', () => {
+describe('<Clickable /> Tests', () => {
   it('should render a button to the screen', () => {
     const props = { onClick: jest.fn() };
     render(

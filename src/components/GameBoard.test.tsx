@@ -14,7 +14,9 @@ const mockBoard = Array(boardSize)
 
 describe('<GameBoard/> Tests', () => {
   it('should render grid with correct cell number', () => {
-    const { container } = render(<GameBoard board={mockBoard} />);
+    const { container } = render(
+      <GameBoard board={mockBoard} onCellClick={jest.fn()} />
+    );
     const grid = container.firstChild;
     expect(grid?.childNodes.length).toBe(boardSize * boardSize);
   });

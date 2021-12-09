@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import GameBoard from './components/GameBoard';
+import { clone, makeGameBoard, NUM_COLS, NUM_ROWS } from './utils';
 
 const StyledApp = styled.div`
   margin: 10px;
@@ -8,18 +10,19 @@ const StyledApp = styled.div`
   align-items: center;
 `;
 
-const gameGrid = Array(20)
-  .fill(null)
-  .map(() =>
-    Array(10)
-      .fill(null)
-      .map(() => 0)
-  );
-
 const App: React.FC = () => {
+  const [board, setBoard] = useState(makeGameBoard(NUM_COLS, NUM_ROWS));
+
+  const handleCellClick = (col: number, row: number) => {
+    console.log('handleCellClick');
+    const boardClone = clone(board);
+    boardClone[col][row] = board[col][row] ? 0 : 1;
+    setBoard(boardClone);
+  };
+
   return (
     <StyledApp>
-      <GameBoard board={gameGrid} />
+      <GameBoard board={board} onCellClick={handleCellClick} />
     </StyledApp>
   );
 };
